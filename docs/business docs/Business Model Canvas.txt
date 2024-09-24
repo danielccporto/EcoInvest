@@ -1,0 +1,14 @@
+Problema:
+Finanças Sustentáveis: O problema pode envolver a falta de transparência e acesso a informações sobre investimentos sustentáveis (também conhecidos como "investimentos verdes"). Muitas vezes, investidores individuais ou pequenas empresas não têm as ferramentas necessárias para avaliar o impacto ambiental e social de suas decisões de investimento.
+Metas e Indicadores de Sucesso:
+Meta: Criar uma plataforma que forneça dados e insights sobre o impacto ESG de diferentes opções de investimento, ajudando os usuários a tomar decisões mais informadas.
+Indicadores:
+Número de usuários utilizando a plataforma.
+Aumento no número de investimentos em opções sustentáveis.
+Avaliação do impacto ambiental e social das carteiras de investimento dos usuários.
+ODS Alinhado:
+ODS 8 (Trabalho Decente e Crescimento Econômico): Incentivar práticas financeiras que promovam um crescimento econômico sustentável.
+ODS 12 (Consumo e Produção Responsáveis): A plataforma pode ajudar a direcionar o capital para empresas que promovem práticas de produção responsável.
+Público-Alvo:
+Investidores individuais preocupados com o impacto social e ambiental de seus investimentos.
+Pequenas e médias empresas que buscam alinhar suas finanças a práticas ESG.
