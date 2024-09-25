@@ -1,0 +1,17 @@
+# Data Summary Report: EcoInvest
+
+## Fontes de Dados Utilizadas
+As seguintes fontes de dados estão sendo usadas no projeto:
+
+1. **Dados Financeiros**:
+   - Extraídos da API do Yahoo Finance para obter o histórico de preços e dados de ações, como os da Apple (AAPL).
+   
+2. **Dados ESG**:
+   - Dados contendo a pontuação ESG das principais empresas de tecnologia (exemplo: Apple, Microsoft, Tesla).
+   
+3. **Notícias de Economia e Sustentabilidade**:
+   - Notícias coletadas diretamente da seção de economia do G1, com foco em sustentabilidade e finanças.
+
+## Estrutura de Armazenamento de Dados
+- Os dados estão sendo armazenados em arquivos CSV para facilitar o processamento e a exibição na plataforma EcoInvest.
+- Todos os dados são integrados e combinados na aplicação para fornecer uma visão completa aos usuários.

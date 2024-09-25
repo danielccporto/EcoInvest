@@ -1,0 +1,15 @@
+# Project Charter: EcoInvest
+
+## Escopo do Projeto
+O projeto EcoInvest visa fornecer uma plataforma que permita investidores individuais e empresas avaliarem o impacto ambiental, social e de governança (ESG) dos seus investimentos, promovendo práticas sustentáveis no mercado de capitais.
+
+## Objetivos do Projeto
+- Aumentar a conscientização sobre a importância dos investimentos sustentáveis.
+- Fornecer uma ferramenta de fácil acesso para comparar a pontuação ESG das empresas.
+- Facilitar a análise de dados financeiros e de sustentabilidade em um único ambiente.
+
+## Stakeholders
+- Daniel Porto (Cientista de Dados)
+- Equipe EcoInvest (Desenvolvedores e Analistas)
+- Usuários da Plataforma: investidores interessados em ESG e sustentabilidade.
+- Stakeholders externos: organizações de ESG e provedores de dados financeiros.
