@@ -19,6 +19,7 @@ def answer_question(question, context):
 
 # Função para geração de texto com OpenAI GPT-3
 def generate_text(prompt):
+
     openai.api_key = os.getenv('OPENAI_API_KEY')
     response = openai.Completion.create(
         engine="text-davinci-003",
