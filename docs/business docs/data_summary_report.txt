@@ -1,17 +1,39 @@
 # Data Summary Report: EcoInvest
 
-## Fontes de Dados Utilizadas
-As seguintes fontes de dados estão sendo usadas no projeto:
+## Fontes de Dados Utilizadas:
+O projeto EcoInvest utiliza diversas fontes de dados para fornecer informações relevantes aos investidores:
 
-1. **Dados Financeiros**:
-   - Extraídos da API do Yahoo Finance para obter o histórico de preços e dados de ações, como os da Apple (AAPL).
-   
-2. **Dados ESG**:
-   - Dados contendo a pontuação ESG das principais empresas de tecnologia (exemplo: Apple, Microsoft, Tesla).
-   
-3. **Notícias de Economia e Sustentabilidade**:
-   - Notícias coletadas diretamente da seção de economia do G1, com foco em sustentabilidade e finanças.
+1. **Notícias de Economia e Sustentabilidade (G1)**:
+   - As notícias são extraídas da seção de economia do G1, com foco em sustentabilidade. Utilizamos a biblioteca Beautiful Soup para realizar o scraping das manchetes e links das notícias.
+   - Os dados extraídos são salvos no arquivo `g1_economia_news.csv`, que é atualizado periodicamente para garantir que os usuários tenham acesso às últimas notícias.
 
-## Estrutura de Armazenamento de Dados
-- Os dados estão sendo armazenados em arquivos CSV para facilitar o processamento e a exibição na plataforma EcoInvest.
-- Todos os dados são integrados e combinados na aplicação para fornecer uma visão completa aos usuários.
+2. **Dados Financeiros (Yahoo Finance)**:
+   - Usamos a API do Yahoo Finance para coletar dados financeiros de ações, como Apple (AAPL), Microsoft (MSFT), entre outras. Esses dados incluem o histórico de preços, volume de negociação e variação de preço.
+   - Esses dados são usados diretamente na página de visualização financeira da plataforma, permitindo aos usuários analisar o desempenho das ações.
+
+3. **Upload de Arquivos pelo Usuário**:
+   - A plataforma permite que os usuários carreguem seus próprios arquivos CSV, que são combinados com os dados ESG já presentes na aplicação. Isso oferece flexibilidade para os usuários adicionarem dados personalizados às análises.
+
+## Processos de Coleta de Dados:
+
+### Web Scraping:
+O scraping de notícias foi implementado usando **Beautiful Soup**, que se mostrou suficiente para coletar dados de páginas estáticas, como o portal G1. O uso de **Selenium** foi considerado, mas, como os dados são carregados diretamente, Beautiful Soup foi a escolha ideal.
+
+O scraping ocorre da seguinte maneira:
+- O código acessa a página de economia do G1.
+- Beautiful Soup extrai os títulos das notícias e seus links.
+- Os dados são salvos no arquivo `g1_economia_news.csv`, que é utilizado pela aplicação Streamlit para exibir as notícias aos usuários.
+
+### API RESTful (FastAPI):
+A API RESTful foi criada para permitir o acesso programático aos dados da plataforma. Isso inclui:
+- Acesso aos dados financeiros por meio da rota `/financial_data/{ticker}`, onde `{ticker}` representa o código da ação (ex.: AAPL para Apple).
+- Acesso às notícias via a rota `/news_data`, que retorna as manchetes e links extraídos do G1.
+- Capacidade de enviar novos dados via POST para a rota `/upload_data`, que permite o envio de dados CSV diretamente para a plataforma.
+
+## Estrutura de Armazenamento de Dados:
+Os dados coletados são armazenados principalmente em arquivos CSV, organizados na pasta `data/`:
+- **g1_economia_news.csv**: Armazena as notícias extraídas do portal G1.
+- **finance_data.csv**: (gerado a partir das consultas da API Yahoo Finance) armazena os dados financeiros das ações.
+- **uploaded_data.csv**: Armazena os dados carregados pelos usuários via a funcionalidade de upload da aplicação.
+
+Os arquivos CSV são utilizados tanto pela aplicação Streamlit quanto pela API FastAPI para garantir uma experiência integrada e fluida aos usuários.

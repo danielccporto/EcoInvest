@@ -1,15 +1,38 @@
 # Project Charter: EcoInvest
 
-## Escopo do Projeto
-O projeto EcoInvest visa fornecer uma plataforma que permita investidores individuais e empresas avaliarem o impacto ambiental, social e de governança (ESG) dos seus investimentos, promovendo práticas sustentáveis no mercado de capitais.
+## Escopo do Projeto:
+O projeto EcoInvest visa criar uma plataforma para investidores monitorarem a sustentabilidade de seus investimentos, com foco em dados ESG, notícias de economia e dados financeiros. A plataforma oferece múltiplas páginas de navegação, incluindo visualização de dados, upload/download de arquivos e uma API REST desenvolvida com FastAPI para acesso a esses dados de forma programática.
 
-## Objetivos do Projeto
-- Aumentar a conscientização sobre a importância dos investimentos sustentáveis.
-- Fornecer uma ferramenta de fácil acesso para comparar a pontuação ESG das empresas.
-- Facilitar a análise de dados financeiros e de sustentabilidade em um único ambiente.
+## Objetivos do Projeto:
+- Implementar uma navegação de múltiplas páginas em Streamlit para facilitar o acesso aos dados financeiros e ESG.
+- Integrar uma API RESTful com FastAPI, permitindo que os dados sejam acessados e manipulados programaticamente.
+- Utilizar Beautiful Soup para realizar scraping de páginas estáticas e armazenar os dados em CSV para uso na aplicação.
+- Permitir upload de arquivos CSV pelos usuários, que serão integrados aos dados ESG.
+- Usar dados de fontes confiáveis, como Yahoo Finance e portais de notícias como o G1.
 
-## Stakeholders
+## Stakeholders:
 - Daniel Porto (Cientista de Dados)
-- Equipe EcoInvest (Desenvolvedores e Analistas)
-- Usuários da Plataforma: investidores interessados em ESG e sustentabilidade.
-- Stakeholders externos: organizações de ESG e provedores de dados financeiros.
+- Equipe EcoInvest (Desenvolvedores, Analistas de Dados)
+- Usuários da plataforma: investidores interessados em ESG e sustentabilidade.
+- Organizações de ESG e provedores de dados financeiros.
+
+## Funcionalidades Principais:
+1. **Visualização de Dados Financeiros**:
+   - A página de dados financeiros exibe informações de ações coletadas da API do Yahoo Finance, permitindo que os usuários visualizem o histórico de preços, variações e volume de negociação.
+
+2. **Pontuação ESG**:
+   - A página de pontuação ESG exibe os dados de sustentabilidade das principais empresas, como Apple, Microsoft e Tesla, com uma pontuação baseada em critérios ambientais, sociais e de governança.
+
+3. **Notícias de Economia**:
+   - A página de notícias exibe manchetes e links de notícias relacionadas à economia e sustentabilidade extraídas diretamente do portal G1 usando Beautiful Soup.
+
+4. **Upload/Download de Arquivos**:
+   - A funcionalidade de upload permite que os usuários carreguem arquivos CSV contendo seus próprios dados, que são então combinados com os dados ESG. A aplicação também permite o download dos dados combinados em CSV.
+
+5. **API RESTful (FastAPI)**:
+   - A API FastAPI oferece acesso programático aos dados financeiros, de notícias e também permite o envio de novos dados via POST. Isso permite que outros sistemas ou usuários interajam diretamente com os dados da plataforma.
+
+## Cronograma:
+- Implementação do sistema de múltiplas páginas: **Concluído**
+- Integração de novas fontes de dados e rotas API: **Concluído**
+- Próximos passos: Integração com LLMs para análise de sentimentos e geração de resumos automáticos.
