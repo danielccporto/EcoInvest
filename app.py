@@ -1,14 +1,20 @@
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'ai')))
-
 import streamlit as st
 import yfinance as yf
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-from llm_tasks import sentiment_analysis, generate_summary, answer_question, generate_text
+from typing import Dict, Optional
+from pydantic import BaseModel
 
+# Caminho para funções externas 
+
+from app.models.models import ProcessedTextResponse, ErrorResponse
+
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'ai')))
+from ai.llm_tasks import sentiment_analysis, generate_summary
 
 @st.cache_data
 def load_financial_data(ticker):
@@ -20,17 +26,17 @@ def load_g1_news():
         return pd.read_csv("data/g1_economia_news.csv")
     except FileNotFoundError:
         st.error("Arquivo CSV de notícias não encontrado.")
-        return pd.DataFrame()  # Retorna um DataFrame vazio caso não exista o arquivo CSV
-
+        return pd.DataFrame()  
+    
 def convert_df_to_csv(df):
     return df.to_csv(index=False).encode('utf-8')
 
 # Funções para páginas
 def financial_data_page():
     st.header("Amostra de Dados Financeiros")
-    ticker = "AAPL"  # Especificar o ticker desejado
-    data = load_financial_data(ticker)  # Carregar diretamente da API Yahoo Finance
-    st.dataframe(data.tail())  # Exibir os dados mais recentes
+    ticker = "AAPL"  
+    data = load_financial_data(ticker)  
+    st.dataframe(data.tail())  
 
 def esg_data_page():
     st.header("Amostra de Dados ESG")
@@ -73,36 +79,35 @@ def download_data_page():
 
 # Nova página de Ferramentas de IA com LLMs
 def ai_tools_page():
-    st.title("Ferramentas de Inteligência Artificial (LLMs)")
+    st.title("Ferramentas de Inteligência Artificial (LLMs) via API")
 
     # Análise de Sentimentos
     st.header("Análise de Sentimentos")
     text = st.text_area("Digite o texto para análise de sentimentos:")
     if st.button("Analisar Sentimento"):
-        result = sentiment_analysis(text)
-        st.write(result)
+        response = requests.post("http://127.0.0.1:8000/analyze_sentiment", json={"text": text})
+        if response.status_code == 200:
+            try:
+                data = ProcessedTextResponse(**response.json())
+                st.write("Resultado:", data.results)
+            except Exception as e:
+                st.error(f"Erro no formato da resposta: {e}")
+        else:
+            st.error("Erro na análise de sentimentos.")
 
     # Geração de Resumos
     st.header("Geração de Resumos")
     summary_text = st.text_area("Digite o texto para gerar um resumo:")
     if st.button("Gerar Resumo"):
-        summary = generate_summary(summary_text)
-        st.write(summary)
-
-    # Perguntas e Respostas
-    st.header("Perguntas e Respostas (Q&A)")
-    question = st.text_input("Digite a pergunta:")
-    context = st.text_area("Digite o contexto da pergunta:")
-    if st.button("Responder Pergunta"):
-        answer = answer_question(question, context)
-        st.write(answer)
-
-    # Geração de Texto
-    st.header("Geração de Texto com LLMs")
-    prompt = st.text_area("Digite o prompt para gerar texto:")
-    if st.button("Gerar Texto"):
-        generated_text = generate_text(prompt)
-        st.write(generated_text)
+        response = requests.post("http://127.0.0.1:8000/generate_summary", json={"text": summary_text})
+        if response.status_code == 200:
+            try:
+                data = ProcessedTextResponse(**response.json())
+                st.write("Resumo:", data.results.get("summary"))
+            except Exception as e:
+                st.error(f"Erro no formato da resposta: {e}")
+        else:
+            st.error("Erro na geração de resumo.")
 
 # Inicializar sessão e cache
 if 'data_loaded' not in st.session_state:

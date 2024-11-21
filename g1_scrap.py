@@ -2,6 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import os
+from ai.llm_tasks import sentiment_analysis, generate_summary
+
+
 
 # Função para fazer o web scraping das notícias do G1 Economia
 def scrape_g1_economia():
@@ -53,3 +56,11 @@ def scrape_g1_economia():
 
 # Testar o scraping
 scrape_g1_economia()
+
+# Exemplo: Processa uma notícia do G1
+news_title = "Brasileiros gastaram neste ano cerca de R$ 20 bilhões por mês em apostas online, estima BC"
+news_summary = generate_summary(news_title)
+news_sentiment = sentiment_analysis(news_title)
+
+print(f"Resumo: {news_summary}")
+print(f"Sentimento: {news_sentiment}")
