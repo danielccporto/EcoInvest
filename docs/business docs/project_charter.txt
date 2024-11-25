@@ -1,14 +1,18 @@
 # Project Charter: EcoInvest
 
 ## Escopo do Projeto:
-O projeto EcoInvest visa criar uma plataforma para investidores monitorarem a sustentabilidade de seus investimentos, com foco em dados ESG, notícias de economia e dados financeiros. A plataforma oferece múltiplas páginas de navegação, incluindo visualização de dados, upload/download de arquivos e uma API REST desenvolvida com FastAPI para acesso a esses dados de forma programática.
+O EcoInvest é uma plataforma interativa que combina ciência de dados e inteligência artificial 
+para promover investimentos sustentáveis, alinhados às práticas de ESG (ambientais, sociais e de governança). 
+O projeto visa oferecer insights práticos aos investidores por meio de um dashboard intuitivo que apresenta 
+dados coletados, analisados e processados de forma automatizada.
 
 ## Objetivos do Projeto:
-- Implementar uma navegação de múltiplas páginas em Streamlit para facilitar o acesso aos dados financeiros e ESG.
-- Integrar uma API RESTful com FastAPI, permitindo que os dados sejam acessados e manipulados programaticamente.
-- Utilizar Beautiful Soup para realizar scraping de páginas estáticas e armazenar os dados em CSV para uso na aplicação.
-- Permitir upload de arquivos CSV pelos usuários, que serão integrados aos dados ESG.
-- Usar dados de fontes confiáveis, como Yahoo Finance e portais de notícias como o G1.
+- Centralizar dados ESG, financeiros e de notícias para auxiliar investidores na tomada de decisões.
+- Utilizar inteligência artificial para análise de sentimentos, geração de resumos e recomendações 
+baseadas em dados ESG e financeiros.
+- Exibir insights claros e acionáveis por meio de visualizações interativas.
+- Alinhar a solução aos Objetivos de Desenvolvimento Sustentável (ODS) e práticas 
+de ESG, promovendo investimentos responsáveis.
 
 ## Stakeholders:
 - Daniel Porto (Cientista de Dados)
@@ -17,22 +21,35 @@ O projeto EcoInvest visa criar uma plataforma para investidores monitorarem a su
 - Organizações de ESG e provedores de dados financeiros.
 
 ## Funcionalidades Principais:
-1. **Visualização de Dados Financeiros**:
-   - A página de dados financeiros exibe informações de ações coletadas da API do Yahoo Finance, permitindo que os usuários visualizem o histórico de preços, variações e volume de negociação.
+***Coleta de Dados:***
 
-2. **Pontuação ESG**:
-   - A página de pontuação ESG exibe os dados de sustentabilidade das principais empresas, como Apple, Microsoft e Tesla, com uma pontuação baseada em critérios ambientais, sociais e de governança.
+- Web scraping de notícias econômicas e sustentáveis.
+- Integração de dados financeiros por meio da API do Yahoo Finance.
+- Entrada de dados ESG por meio de arquivos CSV.
 
-3. **Notícias de Economia**:
-   - A página de notícias exibe manchetes e links de notícias relacionadas à economia e sustentabilidade extraídas diretamente do portal G1 usando Beautiful Soup.
+***Modelos de IA:***
+- Análise de Sentimentos: Identifica o impacto emocional das notícias econômicas.
+- Geração de Resumos: Simplifica notícias longas em resumos objetivos.
+- Recomendações Inteligentes: Sugere investimentos ou ações corretivas baseadas em dados ESG e financeiros.
 
-4. **Upload/Download de Arquivos**:
-   - A funcionalidade de upload permite que os usuários carreguem arquivos CSV contendo seus próprios dados, que são então combinados com os dados ESG. A aplicação também permite o download dos dados combinados em CSV.
+***Dashboard Interativo:***
+- Exibição dos dados coletados e insights gerados.
+- Visualizações que demonstram o ciclo completo de Ciência de Dados.
+- Ferramentas para interação em tempo real com os modelos de IA.
 
-5. **API RESTful (FastAPI)**:
-   - A API FastAPI oferece acesso programático aos dados financeiros, de notícias e também permite o envio de novos dados via POST. Isso permite que outros sistemas ou usuários interajam diretamente com os dados da plataforma.
+## Ciclo Completo de Ciência de Dados
+1. Coleta e Integração de Dados
+2. Desenvolvimento do Backend (FastAPI)
+3. Implementação dos Modelos de IA
+4. Criação do Dashboard Final
 
-## Cronograma:
-- Implementação do sistema de múltiplas páginas: **Concluído**
-- Integração de novas fontes de dados e rotas API: **Concluído**
-- Próximos passos: Integração com LLMs para análise de sentimentos e geração de resumos automáticos.
+## Alinhamento aos ODS e ESG
+- ODS 12 - Consumo e Produção Responsáveis: Incentiva práticas de investimento alinhadas à sustentabilidade.
+- ODS 13 - Ação Contra a Mudança Climática: Destaque para empresas que adotam práticas ambientais responsáveis.
+- Governança: Monitoramento e análise de práticas corporativas por meio de indicadores ESG.
+
+
+## Impacto Esperado 
+Promover maior conscientização sobre sustentabilidade nos investimentos e
+aumentar a adoção de critérios ESG em decisões financeiras.
+

@@ -7,6 +7,8 @@ import requests
 from bs4 import BeautifulSoup
 from typing import Dict, Optional
 from pydantic import BaseModel
+import matplotlib.pyplot as plt
+
 
 # Caminho para funções externas 
 
@@ -109,6 +111,77 @@ def ai_tools_page():
         else:
             st.error("Erro na geração de resumo.")
 
+def agent_page():
+    st.title("Agente de Decisão - Recomendações")
+    st.write("Aqui estão as recomendações geradas pelo agente de decisão.")
+
+    response = requests.post("http://127.0.0.1:8000/agent_recommendations")
+    if response.status_code == 200 and response.json().get("success"):
+        actions = response.json().get("actions")
+        if actions:
+            st.dataframe(pd.DataFrame(actions))
+        else:
+            st.write("Nenhuma recomendação foi gerada.")
+    else:
+        st.error(f"Erro: {response.json().get('error', 'Erro desconhecido')}")
+
+def dashboard_final_page():
+    st.title("Dashboard Final - EcoInvest")
+    st.write("Demonstração do ciclo completo de Ciência de Dados aplicado ao EcoInvest.")
+
+        # Explicação sobre Coleta e Processamento
+    st.subheader("Coleta e Processamento de Dados")
+    st.write("""
+        - **Coleta de Dados:** Os dados foram coletados de diferentes fontes:
+            - Notícias extraídas do portal G1 usando web scraping com Beautiful Soup.
+            - Dados financeiros obtidos via API Yahoo Finance.
+            - Pontuações ESG fornecidas manualmente em um arquivo CSV.
+        - **Processamento de Dados:** 
+            - As notícias foram estruturadas em um arquivo CSV, contendo título, resumo e link.
+            - Os dados financeiros e ESG foram combinados para gerar insights.
+        """)
+
+    # Seção 1: Dados Coletados
+    st.header("Dados Coletados")
+    st.subheader("Notícias de Economia e Sustentabilidade")
+    news_data = pd.read_csv("data/g1_economia_news.csv")
+    st.dataframe(news_data)
+
+    st.subheader("Pontuações ESG")
+    esg_data = pd.read_csv("data/esg_data.csv")
+    st.dataframe(esg_data)
+
+    st.subheader("Dados Financeiros")
+    finance_data = pd.read_csv("data/finance_data.csv")
+    st.dataframe(finance_data)
+
+    # Seção 2: Insights Gerados
+    st.header("Insights Gerados")
+    st.subheader("Recomendações do Agente de Decisão")
+    response = requests.post("http://127.0.0.1:8000/agent_recommendations")
+    if response.status_code == 200 and response.json().get("success"):
+        actions = response.json().get("actions")
+        st.dataframe(pd.DataFrame(actions))
+    else:
+        st.error("Erro ao obter recomendações do agente.")
+
+    # Seção 3: Visualizações
+    st.header("Visualizações")
+    st.subheader("Distribuição das Pontuações ESG")
+    st.bar_chart(esg_data.set_index("Empresa")["Pontuação ESG"])
+
+    st.subheader("Comparação de Crescimento Financeiro")
+    st.bar_chart(finance_data.set_index("Empresa")["Crescimento (%)"])
+
+    st.subheader("Correlação entre ESG e Crescimento")
+    combined_data = pd.merge(esg_data, finance_data, on="Empresa")
+    fig, ax = plt.subplots()
+    ax.scatter(combined_data["Pontuação ESG"], combined_data["Crescimento (%)"])
+    ax.set_xlabel("Pontuação ESG")
+    ax.set_ylabel("Crescimento (%)")
+    st.pyplot(fig)
+
+
 # Inicializar sessão e cache
 if 'data_loaded' not in st.session_state:
     st.session_state['data_loaded'] = False
@@ -122,7 +195,16 @@ if not st.session_state['data_loaded']:
 st.sidebar.title("Navegação")
 page = st.sidebar.selectbox(
     "Selecione a página",
-    ["Home", "Visualização de Dados Financeiros", "Pontuação ESG", "Notícias", "Upload de Arquivos", "Download de Dados", "Ferramentas de IA"]
+    [
+        "Home", 
+        "Visualização de Dados Financeiros", 
+        "Pontuação ESG", "Notícias", 
+        "Upload de Arquivos", 
+        "Download de Dados", 
+        "Ferramentas de IA", 
+        "Agente de Decisão", 
+        "Dashboard Final"
+        ]
 )
 
 def home_page():
@@ -144,3 +226,7 @@ elif page == "Download de Dados":
     download_data_page()
 elif page == "Ferramentas de IA":
     ai_tools_page()
+elif page == "Agente de Decisão":
+    agent_page()
+elif page == "Dashboard Final":
+    dashboard_final_page()

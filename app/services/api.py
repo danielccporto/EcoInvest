@@ -9,6 +9,7 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from app.models.models import ProcessedTextResponse, ErrorResponse
 import logging 
+from ai.decision_agent import DecisionAgent
 
 
 #config do logger 
@@ -113,6 +114,23 @@ def load_financial_data(ticker: str):
     except Exception as e:
         raise ValueError(f"Erro ao carregar dados financeiros para o ticker '{ticker}': {str(e)}")
 
+
+@app.post("/agent_recommendations")
+def get_agent_recommendations():
+    try:
+        # Carregar dados ESG e financeiros
+        esg_data = pd.read_csv("data/esg_data.csv")
+        financial_data = pd.read_csv("data/finance_data.csv")
+
+        # Inicializar o agente
+        agent = DecisionAgent(esg_data, financial_data)
+
+        # Obter recomendações
+        actions = agent.suggest_actions()
+        return {"success": True, "actions": actions}
+    except Exception as e:
+        return {"success": False, "error": f"Erro ao gerar recomendações: {str(e)}"}
+
 # Rota para acessar dados financeiros
 @app.get("/financial_data/{ticker}")
 def get_financial_data(ticker: str):
@@ -172,5 +190,7 @@ def get_uploaded_data():
             raise HTTPException(status_code=404, detail="Arquivo de dados carregados não encontrado.")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao carregar os dados carregados: {str(e)}")
+
+
 
 
