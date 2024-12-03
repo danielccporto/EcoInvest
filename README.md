@@ -1,50 +1,60 @@
-# EcoInvest
-## Uma Solução Sustentável para Investidores Informados
-O EcoInvest integra ciência de dados e inteligência artificial para promover investimentos sustentáveis, alinhados às práticas de ESG. Por meio de um dashboard interativo, oferece insights relevantes que transformam dados complexos em informações acionáveis.
+# EcoInvest  
+A Sustainable Solution for Informed Investors  
 
-### Funcionalidades Principais
-#### Análise de Sentimentos:
-Avalia o impacto emocional de notícias econômicas.
+EcoInvest integrates data science and artificial intelligence to promote sustainable investments aligned with ESG practices. Through an interactive dashboard, it provides relevant insights that transform complex data into actionable information.  
 
-#### Geração de Resumos:
-Simplifica informações de notícias longas.
+## Key Features  
 
-#### Recomendações Inteligentes:
-Sugere ações baseadas em dados ESG e financeiros.
+### Sentiment Analysis  
+Evaluates the emotional impact of economic news.  
 
-#### Dashboard Interativo:
-Combina gráficos e tabelas para explorar os dados e insights.
+### Summary Generation  
+Simplifies information from lengthy news articles.  
 
-#### Tecnologias Utilizadas
-Streamlit: Dashboard interativo.
-FastAPI: API RESTful robusta.
-Beautiful Soup: Web scraping.
-Hugging Face Transformers: Modelagem de linguagem natural.
-Pandas e Matplotlib: Análise e visualização de dados.
+### Intelligent Recommendations  
+Suggests actions based on ESG and financial data.  
 
-### Passo a Passo para Rodar o App
-#### 1. Clonar o Repositório
-- git clone https://github.com/seu-usuario/EcoInvest.git
+### Interactive Dashboard  
+Combines charts and tables to explore data and insights effectively.  
 
-#### 2. Criar e Ativar um Ambiente Virtual
+## Technologies Used  
+
+- **Streamlit**: Interactive dashboard.  
+- **FastAPI**: Robust RESTful API.  
+- **Beautiful Soup**: Web scraping.  
+- **Hugging Face Transformers**: Natural language modeling.  
+- **Pandas and Matplotlib**: Data analysis and visualization.  
+
+## Steps to Run the App  
+
+### 1. Clone the Repository  
+```bash
+git clone https://github.com/your-username/EcoInvest.git
+
+#### 2. Create and Activate a Virtual Environment
 - python -m venv venv
 
-##### Ative ambiente virtual:
+##### Activate the virtual environment:
 - Windows: venv\Scripts\activate
 - Mac/Linux: source venv/bin/activate
 
-#### 3. Instalar as Dependências
+#### 3. Install Dependencies
 - pip install -r requirements.txt
 
-#### 4. Rodar o Backend (FastAPI)
+#### 4. Run the Backend (FastAPI)
 - uvicorn app.services.api:app --reload
-O backend estará disponível em: http://127.0.0.1:8000
+The backend will be available at: http://127.0.0.1:8000
 
-#### 5. Rodar o Frontend (Streamlit)
+#### 5. Run the Frontend (Streamlit)
 - streamlit run app/app.py
-O frontend estará disponível em: http://localhost:8501
+The frontend will be available at: http://localhost:8501
 
-##### Notas
-Certifique-se de que o backend está rodando antes de acessar o dashboard no navegador.
-Arquivos de dados, como g1_economia_news.csv, esg_data.csv e finance_data.csv, devem estar presentes na pasta data/.
+##### Notes
+Ensure the backend is running before accessing the dashboard in your browser.
+Data files such as g1_economia_news.csv, esg_data.csv, and finance_data.csv should be present in the data/ folder.
+
+
+
+
+
 
