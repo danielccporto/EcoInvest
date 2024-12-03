@@ -28,7 +28,6 @@ Combines charts and tables to explore data and insights effectively.
 ## Steps to Run the App  
 
 ### 1. Clone the Repository  
-```bash
 git clone https://github.com/your-username/EcoInvest.git
 
 #### 2. Create and Activate a Virtual Environment
