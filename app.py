@@ -209,7 +209,13 @@ page = st.sidebar.selectbox(
 
 def home_page():
     st.title("Bem-vindo ao EcoInvest")
-    st.write("Escolha uma página no menu à esquerda para explorar os dados.")
+    st.write("Transforme dados em decisões conscientes! Explore informações ESG e financeiras diretamente da nossa plataforma.")
+
+    agent_page()
+    esg_data_page()
+    financial_data_page()
+
+    st.info("Para explorar mais detalhes, acesse as páginas específicas no menu lateral.")
 
 # Definir as páginas
 if page == "Home":
